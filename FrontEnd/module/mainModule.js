@@ -11,6 +11,7 @@ main_module.config(function($routeProvider){
     $routeProvider.when('/',{
         
         templateUrl:'partial_login.html',
-        controller:'controllerLogin'
+        controller:'controllerLogin',
+        factories:'loginFactory'
     });
 });
