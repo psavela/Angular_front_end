@@ -11,9 +11,10 @@ var app = express();
 /***********************MIDDLEWARES*************************/
 
 //Bodyparser json() middleware parses the json object from HTTP POST request
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(function(req,res,next){
 
-app.use(function(req,res,next) {
     
     console.log(req.method);
     console.log(req.path);
@@ -37,14 +38,14 @@ app.use('/FrontEnd/factories',express.static(path.join(__dirname, '../FrontEnd/f
 //app.use('/controllers',express.static(path.join(__dirname, 'controllers')));
 //app.use('/lib',express.static(path.join(__dirname, 'lib')));
 
-/***********************REST API MIDDLEWARES*************************/
+/*********************** OUR REST API MIDDLEWARES *************************/
 
 app.use('/persons', person);
 app.use('/friends',user);    //kun serverille tulee pyyntö /friends, niin silloin tämä middleware käsittelee  
                              //ja siirtää moduliin user.js, jos ei löydy, niin tulee 404 virhesivu
 
 
-/*************************ROUTERS***************************/
+/************************* ROUTERS ***************************/
 /*
 
 app.get("/css/styles.css", function (req, res) {

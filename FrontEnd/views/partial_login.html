@@ -1,3 +1,4 @@
+<p class="error"></p>
 <form>
     <!--ng-model directive is the way to transfer data to controller (lisää user nimisen muuttuja scopeen) -->
     <input type="text" placeholder="username" ng-model="user"><br/>
@@ -6,4 +7,5 @@
     <input type="button" value="Register" ng-click='registerClicked()'>
     <!--bind the data from username textfield (use the variable 'user')-->
     <li>{{user}}</li>
+    <li>{{pass}}</li>
 </form>
