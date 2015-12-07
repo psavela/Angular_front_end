@@ -20,8 +20,8 @@ app.use(function(req,res,next){
     console.log(req.path);
     console.log(__dirname);
     console.log(req.body);
-    console.log(database.Person);
-    database.myFunction();
+//    console.log(database.Person);
+//    database.myFunction();
     //Send request forward in stack
     next();
 });

@@ -76,7 +76,7 @@ exports.updatePerson = function(req,res){
         address:req.body.address,
         age:req.body.age
     }
-    db.Person.update({_id:req.body.id,},updateData, function(err){
+    db.Person.update({_id:req.body.id},updateData, function(err){
         
         res.send({data:"ok"});
     });
@@ -89,20 +89,13 @@ exports.updatePerson = function(req,res){
 */
 exports.findPersonsByName = function(req,res){
     
-    var name = req.params.nimi.split("=")[1];  // split operaatio luo aina taulukon
-    console.log("name:" + name);
-    
-    db.Person.find({name:{'$regex':'^' + name,'$options':'i'}}, function(err,data) {
-                                                         
-        if(err){
-            
-            res.send('error');
-          }
-        else{
-            
-            console.log(data);
-            res.send(data);
-          }
+    var name = req.params.nimi.split("=")[1];
+    var username = req.params.username.split("=")[1];
+
+    db.Friends.find({username:username}).
+        populate({path:'friends',match:{name:{'$regex':'^' + name,'$options':'i'}}}).
+            exec(function(err,data){
+        res.send(data[0].friends);
     });
 }
 
@@ -129,16 +122,18 @@ exports.loginFriend = function(req,res){
         password:req.body.password
     }
     
-    db.Friends.find(searchObject, function(err,data){
+    db.Friends.findOne(searchObject,function(err,data){
         
         if(err){
             
             res.send(502,{status:err.message});
         }else{
-            // =< 0 means wrong username or password
-            if(data.length > 0){
-                res.send(200,{status:"Ok"})
-            }else{
+            console.log(data);
+            //=< 0 means wrong username or password
+            if(data){
+                res.send(200,{status:"Ok"});
+            }
+            else{
                 res.send(401,{status:"Wrong username or password"});
             }
             

@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
 
 
 // search:lle router kohta 3. ks vihko 11.11.2015
-router.get('/:nimi', function(req,res){
+router.get('/:nimi/:username',function(req,res){
     
     console.log("Get with name router called");  // tämä näkyy nodemon konsoli-promptissa
     db.findPersonsByName(req,res);
@@ -32,8 +32,7 @@ router.put('/', function(req, res) {
     
 });
 
-router.delete('/:id', function(req, res) {
-    
+router.delete('/:id/:username',function(req,res){
     db.deletePerson(req,res);
     
 //    console.log(req.params.id);

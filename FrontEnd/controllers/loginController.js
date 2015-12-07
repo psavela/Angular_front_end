@@ -16,24 +16,44 @@ main_module.controller('controllerLogin', function($scope,loginFactory,$location
         var temp = {
             username:$scope.user,
             password:$scope.pass
-        }
+        };
         
         var waitPromise = loginFactory.startLogin(temp);
         //Wait the response from server
         waitPromise.then(function(data){
             
-            console.log(Success);
-            $location.path('/list');
+            console.log('Login successful');
+            $location.path('/list').replace();
             //code inside this block will be called when success response
-            //from server received
-        },function error(data){
-            $('.error').text('Wrong username or password!');
-            console.log(Fail);
+            //from server receives
+        },function(data){
+            console.log('fail');
+            console.log(data);
+            $('.error').text('Wrong username or password!');             
         });
     }
     
     $scope.registerClicked = function(){
         
         console.log('register was pressed');
+
+        var temp = {
+            username: $scope.user,
+            password: $scope.pass
+        };
+        var waitPromise = loginFactory.startRegister(temp);
+	
+        waitPromise.then(function (data){
+            
+            console.log("Successful registration");
+            $location.path('/list').replace();
+            //code inside this block will be called when success response
+            //from server receives
+        }, function(data){
+            console.log('fail');
+            console.log(data);
+            //alert('Registration failed!!!');
+            $('.error').text('Registration failed!');
+         });
     }
 });
