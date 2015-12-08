@@ -5,10 +5,20 @@ var database = require('./modules/database');
 var queries = require('./modules/queries');
 var person = require('./modules/person');
 var user = require('./modules/user');
+//This is used for creating a secret key value
+//for our session coocie
+var uuid = require('uuid');
+//This is used to create a sesson object for client
+var session = require('express-session');
 
 var app = express();
 
 /***********************MIDDLEWARES*************************/
+
+app.use(session({
+    secret:uuid.v1(),
+    cookie:{maxAge:600000}
+}));
 
 //Bodyparser json() middleware parses the json object from HTTP POST request
 app.use(bodyParser.json());
@@ -20,6 +30,7 @@ app.use(function(req,res,next){
     console.log(req.path);
     console.log(__dirname);
     console.log(req.body);
+    console.log(req.session);
 //    console.log(database.Person);
 //    database.myFunction();
     //Send request forward in stack
@@ -46,6 +57,16 @@ app.use('/friends',user);    //kun serverille tulee pyyntö /friends, niin sillo
 
 
 /************************* ROUTERS ***************************/
+
+app.get('/logout',function(req,res){
+    
+//    req.session.kattaja = null;
+    req.session.destroy();
+    res.redirect('/');
+});
+
+
+
 /*
 
 app.get("/css/styles.css", function (req, res) {

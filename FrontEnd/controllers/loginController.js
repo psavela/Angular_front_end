@@ -41,9 +41,24 @@ main_module.controller('controllerLogin', function($scope,loginFactory,$location
             username: $scope.user,
             password: $scope.pass
         };
-        var waitPromise = loginFactory.startRegister(temp);
+        var response = loginFactory.startRegister(temp);
 	
-        waitPromise.then(function (data){
+        response.then(success, error)
+    }
+});
+
+function success(data){
+    
+    alert('New person registered. You can now login with your credentials');
+    
+}
+    
+function error(data){
+    
+    alert('Registering person failed. Username already in use')
+    
+}
+ /*       response.then(function (data){
             
             console.log("Successful registration");
             $location.path('/list').replace();
@@ -53,7 +68,7 @@ main_module.controller('controllerLogin', function($scope,loginFactory,$location
             console.log('fail');
             console.log(data);
             //alert('Registration failed!!!');
-            $('.error').text('Registration failed!');
-         });
-    }
-});
+            $('.error').text('Registration failed!'); */
+ //        });
+ //   }
+//});
