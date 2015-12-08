@@ -1,10 +1,12 @@
+
 <p class="error"></p>
-<form>
+  
+<form class="login_container">
     <!--ng-model directive is the way to transfer data to controller (lisää user nimisen muuttuja scopeen) -->
-    <input type="text" placeholder="username" ng-model="user"><br/>
-    <input type="password" placeholder="password" ng-model='pass'><br/>
-    <input type="button" value="Login" ng-click='loginClicked()'>
-    <input type="button" value="Register" ng-click='registerClicked()'>
+    <input type="text" placeholder="username" class="form-control" ng-model="user"><br/>
+    <input type="password" placeholder="password" class="form-control" ng-model='pass'><br/>
+    <input type="button" value="Login" class="btn btn-default" ng-click='loginClicked()'>
+    <input type="button" value="Register" class="btn btn-default" ng-click='registerClicked()'>
     <!--bind the data from username textfield (use the variable 'user')-->
     <li>{{user}}</li>
     <li>{{pass}}</li>
