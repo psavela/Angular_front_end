@@ -60,7 +60,7 @@ app.use('/friends',user);    //kun serverille tulee pyyntö /friends, niin sillo
 
 app.get('/logout',function(req,res){
     
-//    req.session.kattaja = null;
+//    req.session.kayttaja = null;
     req.session.destroy();
     res.redirect('/');
 });

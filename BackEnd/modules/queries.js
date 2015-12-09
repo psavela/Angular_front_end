@@ -24,13 +24,22 @@ exports.saveNewPerson = function(req,res){       // tässä luodaan objekti jota
     
     var personTemp = new db.Person(req.body);   // body sisältää json objektin
     //Save i to database
-    personTemp.save(function(err,ok){
+    personTemp.save(function(err,newData){
         
-        db.Friends.update({username:req.body.user},
+        db.Friends.update({username:req.session.kayttaja},
                           {$push:{'friends':personTemp._id}},
                          function(err,model){
             
             res.send("Added stuff");
+            
+            if(err){
+                
+                res.status(500).json({message:'Fail'});
+            }else{
+                
+                res.status(200).json({data:newData});
+            }
+            
         });
         //make a redirect to root context
 //        res.redirect('/');  
@@ -56,7 +65,7 @@ exports.deletePerson = function(req,res){
         else{
             //If succesfully removed remome also reference from
             //User collection
-            db.Friends.update({username:userName},{$pull:{'friends':id}},function(err,data){
+            db.Friends.update({username:req.session.kayttaja},{$pull:{'friends':{$in:toDelete}}},function(err,data){
                 console.log(err);
                 res.send("Delete ok");    
             });

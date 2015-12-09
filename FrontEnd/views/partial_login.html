@@ -1,7 +1,7 @@
-
+<a href="#/add">Add new friend</a>
 <p class="error"></p>
   
-<form class="login_container">
+<form class="form_container">
     <!--ng-model directive is the way to transfer data to controller (lisää user nimisen muuttuja scopeen) -->
     <input type="text" placeholder="username" class="form-control" ng-model="user"><br/>
     <input type="password" placeholder="password" class="form-control" ng-model='pass'><br/>
@@ -11,3 +11,4 @@
     <li>{{user}}</li>
     <li>{{pass}}</li>
 </form>
+<div class="flash_container" flash-message="3000"></div> 

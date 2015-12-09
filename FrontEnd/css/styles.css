@@ -30,6 +30,25 @@ p{
     margin: 8px auto;
     border: 2px solid black;
     border-radius: 5px;
-    background-color: darksalmon;
+    background-color: blue;
+    padding: 8px;
+}
+
+.form_container{
+    
+    width: 500px;
+    margin: 8px auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: lightblue;
+    padding: 8px;
+}
+
+.flash_container{
+    
+    width: 500px;
+    margin: auto 0;
+    position: absolute;
+    background-color: white;
     padding: 8px;
 }
