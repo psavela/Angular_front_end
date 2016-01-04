@@ -7,13 +7,12 @@ var main_module = angular.module('main_module',['ngRoute','ngResource','flash'])
 function loginRequired($q,$resource,$location){
     //Create a promise
     var deferred = $q.defer();
-    $resource('/islogged').query().$promise.then(function success(){
-        
+    $resource('/isLogged').query().$promise.then(function(){
         //Mark the promise to be solved (or resolved)
         deferred.resolve();
         return deferred;
         
-    },function fail(){
+    },function(){
         
         //Mark promise to be failed
         deferred.reject();
@@ -24,11 +23,18 @@ function loginRequired($q,$resource,$location){
     
     
 }
+
+main_module.run(function($http){
+    
+    $http.defaults.headers.common['cache-control'] = 'private, no-store, must-revalidate';
+});
+
 //Create basic configuration for our angular app.
 //Configuration includes USUALLY a router for our views.
 //The $routeProvider object comes from ngRoute module
 main_module.config(function($routeProvider){
     
+    //$http.defaults.headers.common['cache-control'] = 'no-cache';
     $routeProvider.when('/',{
         
         templateUrl:'partial_login.html',
@@ -40,7 +46,19 @@ main_module.config(function($routeProvider){
         controller:'friendDataController',
         resolve:{loginRequired:loginRequired}
         
-    }).when('/add',{
+    }).when('/edit',{
+        
+        templateUrl:'partial_editView.html',
+        controller:'editController',
+        resolve:{loginRequired:loginRequired}
+        
+    }).when('/delete',{
+        
+        templateUrl:'partial_deleteView.html',
+        controller:'deleteController',
+        resolve:{loginRequired:loginRequired}
+        
+    }).when('/insert',{
         
         templateUrl:'partial_addView.html',
         controller:'addController',

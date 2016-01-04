@@ -1,12 +1,17 @@
 var mongoose = require("mongoose");
+var db_name = "oma";
+var mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + db_name;
 
-mongoose.connect('mongodb://localhost:27017/oma',connectionStatus);
+if(process.env.OPENSHIFT_MONGODB_DB_URL){
+  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
+}
 
-/***********************************************
-**** Connection callback for fail and ok cases *
-************************************************/
+mongoose.connect(mongodb_connection_string,connectionStatus);
 
-function connectionStatus(err, ok){
+/**
+  *Connectuion callback for fail and ok cases
+  */
+function connectionStatus(err,ok){
     
     if(err){
         
@@ -24,7 +29,7 @@ function connectionStatus(err, ok){
 var User = mongoose.model('User',{            // malli jolle nimi User
     username:{type:String,unique:true},       // uniikki
     password:String,
-    friends:[{type:mongoose.Schema.Types.Object, ref:'Person'}]  //uuden henkilön indeksi friends taulukkoon. ref:llä viitataan nimeen
+    friends:[{type:mongoose.Schema.Types.ObjectId, ref:'Person'}]  //uuden henkilön indeksi friends taulukkoon. ref:llä viitataan nimeen
 });
 
 

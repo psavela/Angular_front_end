@@ -16,14 +16,12 @@ main_module.controller('controllerLogin', function($scope,loginFactory,$location
         var temp = {
             username:$scope.user,
             password:$scope.pass
-        };
+        }
         
         var waitPromise = loginFactory.startLogin(temp);
         //Wait the response from server
         waitPromise.then(function(data){
-            
-            console.log('Login successful');
-            $location.path('/list').replace();
+            $location.path('/list');
             //code inside this block will be called when success response
             //from server receives
         },function(data){
@@ -44,35 +42,20 @@ main_module.controller('controllerLogin', function($scope,loginFactory,$location
         var temp = {
             username: $scope.user,
             password: $scope.pass
-        };
+        }
         var response = loginFactory.startRegister(temp);
-	
-        response.then(success, error)
+        
+        response.then(success,error)
+    }
+    
+    function success(data){
+    
+        Flash.create('success', 'New user added!', 'custom-class'); 
+    }
+
+    function error(data){
+
+        Flash.create('danger', 'Username already in use!', 'custom-class');
     }
 });
 
-function success(data){
-    
-    alert('New person registered. You can now login with your credentials');
-    
-}
-    
-function error(data){
-    
-    alert('Registering person failed. Username already in use')
-        
-}
- /*       response.then(function (data){
-            
-            console.log("Successful registration");
-            $location.path('/list').replace();
-            //code inside this block will be called when success response
-            //from server receives
-        }, function(data){
-            console.log('fail');
-            console.log(data);
-            //alert('Registration failed!!!');
-            $('.error').text('Registration failed!'); */
- //        });
- //   }
-//});
