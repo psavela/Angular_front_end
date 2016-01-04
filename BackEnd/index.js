@@ -1,5 +1,6 @@
 var express = require("express");
 var path = require("path");
+var http = require("http");
 var bodyParser = require("body-parser");
 var database = require('./modules/database');
 var queries = require('./modules/queries');
@@ -65,7 +66,19 @@ app.get('/logout',function(req,res){
     res.redirect('/');
 });
 
-
+//This checks if client is logged in or not
+app.get('/islogged',function(req,res){
+    //User is logged in if session contains kayttaja attribute
+    if(req.session.kayttaja){
+        
+        res.status(200).send([{status:'ok'}]);
+        
+    }
+    else{
+                             
+        res.status(401).send([{status:'Unauthorized'}]);       
+    }    
+});
 
 /*
 
