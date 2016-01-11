@@ -11,6 +11,7 @@ var connection = mysql.createConnection({
     database:'friends_schema'
 });
 
+//Connect to mysql server with given connection attributes
 connection.connect(function(err){
     
     if(err){
@@ -25,8 +26,8 @@ connection.connect(function(err){
 //Call this function to check username and password from mysql database
 exports.loginMysql = function(req,res){
     
-    connection.query('SELECT + FROM user WHERE username=? and pass=?',
-                    [req.body.username,req.body.password],function(error,results,fields){
+ 
+    connection.query('SELECT * FROM user WHERE username=? and pass=?',[req.body.username,req.body.password],function(error,results,fields){
         
         console.log(error);
         console.log(results);
