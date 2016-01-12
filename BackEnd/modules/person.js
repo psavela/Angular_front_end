@@ -1,5 +1,6 @@
 var express = require("express");
 var db = require('./queries');
+var mysql = require('./mysql_module');
 
 var router = express.Router();
 // nämä on routereita
@@ -21,8 +22,9 @@ router.get('/search',function(req,res){
 
 //handle POST request for /persons context
 router.post('/', function(req, res) {
-        
-    db.saveNewPerson(req, res);
+  
+    mysql.addNewFriend(req,res);
+//    db.saveNewPerson(req, res);
     
 });
 
