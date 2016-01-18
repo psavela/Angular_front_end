@@ -1,29 +1,51 @@
-<a href="/logout">Logout</a>
+<ng-include src="'navbar.html'"></ng-include>
+<!-- <a href="/logout">Logout</a>
 <a href="#/delete">Delete Information</a>
-<a href="#/insert">Insert New Friend</a>
-<div class='table_container'>
-    <h1>Your friends</h1>
-    <p>To edit information, click the row</p>
-    <p>Search persons...empty search will fetch all your friends</p>
-    <input type="search" class="form-control" value="Search" ng-model='search_term'/><br/>
-    <button class="btn btn-default" value="Search" ng-click='search()'>
-        <span class="glyphicon glyphicon-search"></span>
-        Search
-    </button>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Age</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat='person in friendData' ng-click='rowCliked(person._id)'>
-                <td>{{person.name}}</td>
-                <td>{{person.address}}</td>
-                <td>{{person.age}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<a href="#/insert">Insert New Friend</a> -->
+
+<!--Use as class  -->
+<div class=of-example></div>
+<!--Use as element  -->
+<of-example></of-example>
+<!--Use as attribute  -->
+<div of-example></div>
+
+<div class="container">
+    <!--Rule 2 every column must be inside a row! -->
+    <div class="row">   
+    <!-- Rule 3 columns are defined in row -->
+
+        <div class="col-sm-9">      
+<!--            <div class='table_container'> -->
+                <h1>Your friends</h1>
+                <p>To edit information, click the row</p>
+                <p>Search persons...empty search will fetch all your friends</p>
+                <input type="search" class="form-control" value="Search" ng-model='search_term'/><br/>
+                <button class="btn btn-default" value="Search" ng-click='search()'>
+                    <span class="glyphicon glyphicon-search"></span>
+                    Search
+                </button>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat='person in friendData' ng-click='rowCliked(person._id)'>
+                            <td>{{person.name}}</td>
+                            <td>{{person.address}}</td>
+                            <td>{{person.age}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+  <!--          </div> -->
+            </div>
+        <div class="col-sm-3">
+            <div style="background-color:grey;" class="jumbotron"><h2>Tähän pärstä</h2></div></div>
+        
+        
+        </div>
+    </div>

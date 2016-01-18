@@ -1,5 +1,6 @@
 /*main_module.controller('friendDataController', function($scope,friendDataFactory){
     
+
     console.log('friendDataController loaded');
         
     //Check if factory does not has the data
@@ -21,6 +22,8 @@
 });*/
 
 main_module.controller('friendDataController',function($scope,friendDataFactory,$location){
+    
+    $scope.name = "by psavela";
     
     console.log('friendDataController loaded');
     
