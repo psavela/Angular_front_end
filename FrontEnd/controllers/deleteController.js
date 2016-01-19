@@ -1,5 +1,10 @@
 main_module.controller('deleteController',function($scope,friendDataFactory,Flash,$location){
     
+	$scope.navbarData = {
+		
+		urls:['/logout','#/delete','#/insert','#/location','http://www.kaleva.fi'],
+		texts:['Logout','Delete','Insert','Your Location','News']
+	}
     $scope.deleteArray = [];
     
     friendDataFactory.getFriendData(function(dataArray){

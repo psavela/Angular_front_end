@@ -1,6 +1,6 @@
 main_module.factory('loginFactory',function($resource){
     
-    var factory ={};
+    var factory = {};
     
     //This function can be called from ANY controller using this factory 
     //implementation

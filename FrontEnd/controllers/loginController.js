@@ -44,8 +44,8 @@ main_module.controller('controllerLogin', function($scope,loginFactory,$location
         console.log('register was pressed');
 
         var temp = {
-            username: $scope.user,
-            password: $scope.pass
+            username:$scope.user,
+            password:$scope.pass
         }
         var response = loginFactory.startRegister(temp);
         

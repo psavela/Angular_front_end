@@ -68,5 +68,9 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_addView.html',
         controller:'addController',
         resolve:{loginRequired:loginRequired}
-    });
+    }).when('/location',{
+	
+	});
+    
+    
 });

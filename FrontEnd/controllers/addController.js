@@ -1,9 +1,9 @@
 main_module.controller('addController',function($scope,friendDataFactory,Flash){
     
-    $scope.navbarData = {
-
-        urls:['/logout','#/delete','#/insert','http://www.kaleva.fi'],
-        texts:['Logout','Delete','Insert','News']
+	$scope.navbarData = {
+		
+		urls:['/logout','#/delete','#/insert','#/location','http://www.kaleva.fi'],
+		texts:['Logout','Delete','Insert','Your Location','News']
 	}
     $scope.name = "";
     $scope.address = "";
