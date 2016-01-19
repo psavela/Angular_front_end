@@ -1,0 +1,38 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addNewFriend`(in a_name varchar(255),in a_address varchar(255),in a_age int,in a_user_id int)
+BEGIN
+	INSERT INTO friend(name,address,age,user_id) values(a_name,a_address,a_age,a_user_id);
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllUsers`()
+BEGIN
+	SELECT * from user;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getLoginInfo`(in user varchar(255), in passw varchar(255))
+BEGIN
+	SELECT * FROM user WHERE username=user AND pass=passw;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUserFriendsById`(in user_id int)
+BEGIN
+	SELECT user.username,friend._id,friend.name,friend.address,friend.age FROM
+user INNER JOIN friend ON user.user_id=friend.user_id WHERE user.user_id=user_id;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUserFriendsByName`(in usern varchar(255))
+BEGIN
+	SELECT user.username,friend._id,friend.name,friend.address,friend.age FROM
+user INNER JOIN friend ON user.user_id=friend.user_id WHERE user.username=usern;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registerNewUser`(in user varchar(255), in passw varchar(255))
+BEGIN
+	INSERT INTO user (username,pass) values (user,passw);
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFriendInfo`(in a_name varchar(255),in a_address varchar(255),in a_age int,in a_user_id int)
+BEGIN
+	UPDATE friend name,address,age,user_id 
+	SET name=a_name,address=a_address,age=a_age
+	WHERE a_user_id=user_id;
+END

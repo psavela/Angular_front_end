@@ -1,26 +1,10 @@
-<ng-include src="'navbar.html'"></ng-include>
-<!-- <a href="/logout">Logout</a>
-<a href="#/delete">Delete Information</a>
-<a href="#/insert">Insert New Friend</a> -->
-
-<div of-navbar></div>
-
-<!--Use as class  -->
-<div class=of-example></div>
-<!--Use as element  -->
-<of-example myname="psavela" users="temp"></of-example>
-<of:example myname="pmsavela"></of:example>
-<!--Use as attribute  -->
-<div of-example></div>
-
+<!--<ng-include src="'navbar.html'"></ng-include>-->
+<nav-bar navbar-data='navbarData'></nav-bar>
 <div class="container">
-    <!--Rule 2 every column must be inside a row! -->
-    <div class="row">   
-    <!-- Rule 3 columns are defined in row -->
-
-        <div class="col-sm-9">      
-<!--            <div class='table_container'> -->
-                <h1>Your friends</h1>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class='table_container'>
+                <h1>Your friends...</h1>
                 <p>To edit information, click the row</p>
                 <p>Search persons...empty search will fetch all your friends</p>
                 <input type="search" class="form-control" value="Search" ng-model='search_term'/><br/>
@@ -44,11 +28,10 @@
                         </tr>
                     </tbody>
                 </table>
-  <!--          </div> -->
-            </div>
-        <div class="col-sm-3">
-            <div style="background-color:grey;" class="jumbotron"><h2>Tähän pärstä</h2></div></div>
-        
-        
-        </div>
-    </div>
+            </div>   
+        </div>    
+        <div class="col-sm-6">
+            <div class="jumbotron"><h1>This is jumbotron</h1></div>
+        </div> 
+    </div>        
+</div>

@@ -24,7 +24,7 @@
 main_module.controller('friendDataController',function($scope,friendDataFactory,$location){
     
     $scope.name = "by psavela";
-    
+    $scope.temp =['Heikki Hela','Risto Mattila','Juha Sipilä','Teuvo Hakkarainen'];
     console.log('friendDataController loaded');
     
     friendDataFactory.getFriendData(dataCallback);
